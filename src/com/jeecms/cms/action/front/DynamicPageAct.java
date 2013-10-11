@@ -117,7 +117,29 @@ public class DynamicPageAct {
 			log.debug("Channel path not found: {}", path);
 			return FrontUtils.pageNotFound(request, response, model);
 		}
-
+		//如果是单页，判断栏目是否有访问权限 
+		if(channel.getHasContent() == null || !channel.getHasContent().booleanValue()) {
+			CmsUser user = CmsUtils.getUser(request);
+			Set<CmsGroup> groups = channel.getViewGroups();
+			int len = groups.size();
+			if (len != 0) {
+				if (user == null) {
+					return FrontUtils.showLogin(request, model, site);
+				}
+				Integer gid = user.getGroup().getId();
+				boolean right = false;
+				for (CmsGroup group : groups) {
+					if (group.getId().equals(gid)) {
+						right = true; break;
+					}
+				}
+				if (!right) {
+					String gname = user.getGroup().getName();
+					return FrontUtils.showMessage(request, model, GROUP_FORBIDDEN,
+							gname);
+				}
+			}
+		}
 		model.addAttribute("channel", channel);
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
