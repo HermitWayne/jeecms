@@ -184,6 +184,8 @@
 	<bean id="cmsUserResumeMng" class="com.jeecms.cms.manager.main.impl.CmsUserResumeMngImpl"/>
 	<bean id="cmsTaskMng" class="com.jeecms.cms.manager.assist.impl.CmsTaskMngImpl"/>
 	
+	<bean id="slmBookingService" class="org.github.jeecms.service.impl.SlmBookingServiceImpl"/>
+	
 	<!--DAO-->
 	<bean id="channelDao" class="com.jeecms.cms.dao.main.impl.ChannelDaoImpl"/>
 	<bean id="channelExtDao" class="com.jeecms.cms.dao.main.impl.ChannelExtDaoImpl"/>
@@ -247,5 +249,7 @@
 	<bean id="cmsJobApplyDao" class="com.jeecms.cms.dao.assist.impl.CmsJobApplyDaoImpl"/>
 	<bean id="cmsUserResumeDao" class="com.jeecms.cms.dao.main.impl.CmsUserResumeDaoImpl"/>
 	<bean id="cmsTaskDao" class="com.jeecms.cms.dao.assist.impl.CmsTaskDaoImpl"/>
+	
+	<bean id="slmBookingDao" class="org.github.jeecms.dao.impl.SlmBookingDaoImpl"/>
 	
 	</beans>

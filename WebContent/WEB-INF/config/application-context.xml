@@ -36,6 +36,7 @@
 				<value>classpath*:/com/jeecms/core/entity/hbm/*.hbm.xml</value>
 				<value>classpath*:/com/jeecms/cms/entity/main/hbm/*.hbm.xml</value>
 				<value>classpath*:/com/jeecms/cms/entity/assist/hbm/*.hbm.xml</value>
+				<value>classpath*:/org/github/jeecms/entity/hbm/*.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
