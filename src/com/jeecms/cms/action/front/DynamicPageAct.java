@@ -118,7 +118,8 @@ public class DynamicPageAct {
 			return FrontUtils.pageNotFound(request, response, model);
 		}
 		//如果是单页，判断栏目是否有访问权限 
-		if(channel.getHasContent() == null || !channel.getHasContent().booleanValue()) {
+		if(channel.getHasContent() == null || !channel.getHasContent().booleanValue()
+				|| channel.getDisplay() == null || !channel.getDisplay().booleanValue()) {
 			CmsUser user = CmsUtils.getUser(request);
 			Set<CmsGroup> groups = channel.getViewGroups();
 			int len = groups.size();
