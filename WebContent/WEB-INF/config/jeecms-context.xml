@@ -250,6 +250,7 @@
 	<bean id="cmsUserResumeDao" class="com.jeecms.cms.dao.main.impl.CmsUserResumeDaoImpl"/>
 	<bean id="cmsTaskDao" class="com.jeecms.cms.dao.assist.impl.CmsTaskDaoImpl"/>
 	
+	<!-- org.github.jeecms -->
+	<bean class="org.github.jeecms.bean.SpringBean" lazy-init="false"/>
 	<bean id="slmBookingDao" class="org.github.jeecms.dao.impl.SlmBookingDaoImpl"/>
-	
 	</beans>
