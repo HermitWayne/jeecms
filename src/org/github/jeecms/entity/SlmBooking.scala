@@ -13,5 +13,6 @@ class SlmBooking(
     @BeanProperty var telphone: String,
     @BeanProperty var remark: String,
     @BeanProperty var status: java.lang.Integer,
-    @BeanProperty var createtime: java.util.Date
+    @BeanProperty var createtime: java.util.Date,
+    @BeanProperty var modifytime: java.util.Date
 )
