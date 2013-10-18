@@ -57,4 +57,12 @@ object SlmBookings extends Table[SlmBooking]("ut_booking") {
       Query(this).filter(b => b.id === id && b.status === dict.CommonStatus.Deleted).map(_.status).update(dict.CommonStatus.Enabled)
     } else 0
   }
+  def delete(id: Int) = database withSession {
+    Query(this).filter(_.id === id).map(_.status).update(dict.CommonStatus.Deleted)
+  }
+  def read(id: Int) = database withSession {
+    val now = new java.util.Date
+    Query(this).filter(b => b.id === id && b.status === dict.CommonStatus.Enabled)
+      .map(b => b.status ~ b.modifytime).update((dict.CommonStatus.Readed, now))
+  }
 }

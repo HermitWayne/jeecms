@@ -36,4 +36,6 @@
 	<bean id="messageAct" class="com.jeecms.cms.action.member.MessageAct"/>
 	<bean id="siteFlowAct" class="com.jeecms.cms.action.front.CmsSiteFlowAct"/>
 	<bean id="resumeAct" class="com.jeecms.cms.action.member.ResumeAct"/>
+	
+	<bean id="bookingAct" class="org.github.jeecms.action.member.BookingAct"/>
 </beans>

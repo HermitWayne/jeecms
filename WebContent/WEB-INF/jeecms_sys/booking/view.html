@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<#include "/jeecms_sys/head.html"/>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>: 预约 - 查看</div>
+	<form class="ropt">
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0"><tr>
+<@p.td colspan="1" width="50">预约领导:</@p.td>
+<@p.td>[${booking.content.attr.position!}]${booking.content.title!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">预约日期:</@p.td>
+<@p.td>${booking.content.releaseDate?string("yyyy-MM-dd")}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">主题:</@p.td>
+<@p.td>${booking.title!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">内容:</@p.td>
+<@p.td>${booking.remark!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">姓名:</@p.td>
+<@p.td>${booking.realname!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">单位:</@p.td>
+<@p.td>${booking.company!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">邮箱:</@p.td>
+<@p.td>${booking.email!}</@p.td><@p.tr/>
+
+<@p.td colspan="1" width="50">电话:</@p.td>
+<@p.td>${booking.telphone!}</@p.td><@p.tr/>
+</table>
+</div>
+</body>
+</html>

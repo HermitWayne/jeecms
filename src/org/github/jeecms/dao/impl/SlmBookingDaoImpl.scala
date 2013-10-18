@@ -17,9 +17,11 @@ class SlmBookingDaoImpl() extends HibernateBaseDao[SlmBooking, Integer] with Slm
   def getPage(userId: Option[Integer], contentId: Option[Integer], siteId: Option[Integer],
       cacheable: Boolean, pageNo: Int, pageSize: Int): Pagination = {
     val f = Finder.create("from SlmBooking booking where 1 = 1")
-    userId.foreach(t => f.append(" and booking.user.id = :userId ").setParam("userId", userId))
-    contentId.foreach(t => f.append(" and booking.content.id = :contentId ").setParam("contentId", contentId))
-    siteId.foreach(t => f.append(" and booking.content.site.id = :siteId ").setParam("siteId", siteId))
+    //userId.foreach(t => f.append(" and booking.user.id = :userId ").setParam("userId", userId))
+    //contentId.foreach(t => f.append(" and booking.content.id = :contentId ").setParam("contentId", contentId))
+    //siteId.foreach(t => f.append(" and booking.content.site.id = :siteId ").setParam("siteId", siteId))
+    f.append(" and status != 1 ")
+    f.append(" order by status ")
     f.setCacheable(cacheable)
     find(f, pageNo, pageSize)
   }

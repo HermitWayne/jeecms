@@ -66,4 +66,5 @@
 	<bean id="jobApplyAct" class="com.jeecms.cms.action.admin.assist.CmsJobApplyAct"/>
 	<bean id="taskAct" class="com.jeecms.cms.action.admin.assist.CmsTaskAct"/>
 	
+	<bean id="bookingAct" class="org.github.jeecms.action.admin.BookingAct"/>
 </beans>
