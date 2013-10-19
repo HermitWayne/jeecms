@@ -121,6 +121,7 @@ public abstract class BaseContent  implements Serializable {
 	private java.util.Set<com.jeecms.cms.entity.assist.CmsComment> comments;
 	private java.util.Set<com.jeecms.cms.entity.assist.CmsFile> files;
 	private java.util.Set<com.jeecms.cms.entity.assist.CmsJobApply> jobApplys;
+	private java.util.Set<org.github.jeecms.entity.SlmBooking> slmbooking;
 
 
 
@@ -274,6 +275,14 @@ public abstract class BaseContent  implements Serializable {
 	public void setJobApplys(
 			java.util.Set<com.jeecms.cms.entity.assist.CmsJobApply> jobApplys) {
 		this.jobApplys = jobApplys;
+	}
+	
+	public java.util.Set<org.github.jeecms.entity.SlmBooking> getSlmbooking() {
+		return slmbooking;
+	}
+	public void setSlmbooking(
+			java.util.Set<org.github.jeecms.entity.SlmBooking> slmbooking) {
+		this.slmbooking = slmbooking;
 	}
 
 	/**

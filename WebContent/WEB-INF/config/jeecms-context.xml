@@ -108,6 +108,7 @@
 	<bean id="contentLuceneListener" class="com.jeecms.cms.lucene.ContentLuceneListener"/>
 	<bean id="contentStaticPageListener" class="com.jeecms.cms.staticpage.ContentStaticPageListener"/>
 	
+	<bean id="bookingContentListener" class="org.github.jeecms.service.impl.BookingContentListener"/>
 	
 	<!--MANAGER-->
 	<bean id="channelMng" class="com.jeecms.cms.manager.main.impl.ChannelMngImpl">
@@ -126,6 +127,7 @@
 			<list>
 				<ref bean="contentLuceneListener"/>
 				<ref bean="contentStaticPageListener"/>
+				<ref bean="bookingContentListener"/>
 			</list>
 		</property>
 	</bean>

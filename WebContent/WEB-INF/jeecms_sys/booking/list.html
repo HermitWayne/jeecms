@@ -35,8 +35,8 @@ function optDelete() {
 		<input type='checkbox' name='ids' value='${booking.id}'/><#t/>
 	</@p.column><#t/>
 	<@p.column title="ID">${booking.id}</@p.column><#t/>
-	<@p.column code="预约领导">[${booking.content.attr.position!}]${booking.content.title!}</@p.column><#t/>
-	<@p.column code="预约时间">${booking.content.releaseDate?string("yyyy-MM-dd")}</@p.column><#t/>
+	<@p.column code="预约领导">[${booking.content.attr.position!}]${booking.content.attr.target!}</@p.column><#t/>
+	<@p.column code="预约时间">${booking.content.attr.bookingdate!}</@p.column><#t/>
 	<@p.column code="主题">${booking.title!}</@p.column><#t/>
 	<@p.column code="人员">${booking.realname!}</@p.column><#t/>
 	<@p.column code="状态"><#if booking.status = 0><span>未读</span><#else><span>已读</span></#if></@p.column><#t/>
