@@ -65,4 +65,8 @@ object SlmBookings extends Table[SlmBooking]("ut_booking") {
     Query(this).filter(b => b.id === id && b.status === dict.CommonStatus.Enabled)
       .map(b => b.status ~ b.modifytime).update((dict.CommonStatus.Readed, now))
   }
+  def isEnabledBooking(contentid: Int) = database withSession {
+    val q = Query(this).filter(b => b.contentid === contentid && b.status =!= dict.CommonStatus.Deleted)
+    Query(q.map(_ => 1).length).first
+  } 
 }

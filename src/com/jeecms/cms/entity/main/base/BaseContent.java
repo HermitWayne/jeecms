@@ -284,6 +284,9 @@ public abstract class BaseContent  implements Serializable {
 			java.util.Set<org.github.jeecms.entity.SlmBooking> slmbooking) {
 		this.slmbooking = slmbooking;
 	}
+	public Integer getEnabledSlmBookingCount() {
+		return org.github.jeecms.model.SlmBookings.isEnabledBooking(this.id);
+	}
 
 	/**
 	 * Return the value associated with the column: downloads_day

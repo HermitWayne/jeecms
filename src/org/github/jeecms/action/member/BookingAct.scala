@@ -23,7 +23,7 @@ class BookingAct {
   var contentMng: ContentMng = _
   
   @RequestMapping(value = Array("/booking/booking.jspx"), 
-      method = Array(RequestMethod.GET))
+      method = Array(RequestMethod.POST))
   def postBooking(request: JRequest, response: JResponse, 
       cid: Integer, booking: org.github.jeecms.entity.SlmBooking): Unit = {
     val user = CmsUtils.getUser(request)
@@ -50,7 +50,10 @@ class BookingAct {
   }
   
   private def checkBooking(cid: Integer, b: org.github.jeecms.entity.SlmBooking) = {
-    if (cid == null || b.getTitle == null || b.getRealname == null || b.getEmail == null || b.getTelphone == null) false
+    if (cid == null || b.getTitle == null || b.getTitle.isEmpty() || 
+        b.getRealname == null || b.getRealname.isEmpty() || 
+        b.getEmail == null || b.getEmail.isEmpty() || 
+        b.getTelphone == null || b.getTelphone.isEmpty()) false
     else true
   }
 }
