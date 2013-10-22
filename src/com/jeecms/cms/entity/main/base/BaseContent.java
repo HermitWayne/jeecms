@@ -277,13 +277,6 @@ public abstract class BaseContent  implements Serializable {
 		this.jobApplys = jobApplys;
 	}
 	
-	public java.util.Set<org.github.jeecms.entity.SlmBooking> getSlmbooking() {
-		return slmbooking;
-	}
-	public void setSlmbooking(
-			java.util.Set<org.github.jeecms.entity.SlmBooking> slmbooking) {
-		this.slmbooking = slmbooking;
-	}
 	public Integer getEnabledSlmBookingCount() {
 		return org.github.jeecms.model.SlmBookings.isEnabledBooking(this.id);
 	}

@@ -85,11 +85,6 @@
 			<key column="content_id"/>
 			<one-to-many class="com.jeecms.cms.entity.assist.CmsJobApply"/>
 		</set>
-		<set name="slmbooking" inverse="true" cascade="delete-orphan">
-			<cache usage="read-write"/>
-			<key column="id"/>
-			<one-to-many class="org.github.jeecms.entity.SlmBooking"/>
-		</set>
 		<set name="comments" inverse="true" cascade="delete-orphan">
 			<cache usage="read-write"/>
 			<key column="content_id"/>
