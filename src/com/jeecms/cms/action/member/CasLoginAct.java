@@ -50,24 +50,34 @@ public class CasLoginAct {
 	public static final String LOGIN_INPUT = "tpl.loginInput";
 	public static final String LOGIN_STATUS = "tpl.loginStatus";
 	public static final String TPL_INDEX = "tpl.index";
+	public static final String RETURN_URL = "returnUrl";
 
 	@RequestMapping(value = "/login.jspx", method = RequestMethod.GET)
 	public String input(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		String sol = site.getSolutionPath();
 		String message = RequestUtils.getQueryParam(request, MESSAGE);
+		String returnUrl = RequestUtils.getQueryParam(request, RETURN_URL);
 		String authId = (String) session.getAttribute(request, AUTH_KEY);
 		if (authId != null) {
 			// 存在认证ID
 			Authentication auth = authMng.retrieve(authId);
 			// 存在认证信息，且未过期
 			if (auth != null) {
-				return "redirect:/";
+				if (returnUrl == null || StringUtils.isBlank(returnUrl))
+					return "redirect:/";
+				else {
+					model.clear();
+					return getView("", returnUrl, "");
+				}
 			}
 		}
 		FrontUtils.frontData(request, model, site);
 		if (!StringUtils.isBlank(message)) {
 			model.addAttribute(MESSAGE, message);
+		}
+		if (!StringUtils.isBlank(returnUrl)) {
+			model.addAttribute(RETURN_URL, returnUrl);
 		}
 		return FrontUtils.getTplPath(request, sol, TPLDIR_MEMBER, LOGIN_INPUT);
 	}
@@ -97,9 +107,15 @@ public class CasLoginAct {
 				}
 				removeCookieErrorRemaining(request, response);
 				FrontUtils.frontData(request, model, site);
+				String returnUrl = RequestUtils.getQueryParam(request, RETURN_URL);
 				if(user!=null){
-					return FrontUtils.getTplPath(request, site.getSolutionPath(),
-							TPLDIR_INDEX, TPL_INDEX);
+					if (returnUrl == null || StringUtils.isBlank(returnUrl)) {
+						return FrontUtils.getTplPath(request, site.getSolutionPath(),
+								TPLDIR_INDEX, TPL_INDEX);
+					} else {
+						model.clear();
+						return getView("", returnUrl, "");
+					}
 				}else{
 					return "redirect:login.jspx";
 				}
@@ -190,7 +206,7 @@ public class CasLoginAct {
 			return sb.toString();
 		} else if (!StringUtils.isBlank(returnUrl)) {
 			StringBuilder sb = new StringBuilder("redirect:");
-			sb.append(returnUrl);
+			sb.append(returnUrl.replace("\\", ""));
 			return sb.toString();
 		} else {
 			return null;
