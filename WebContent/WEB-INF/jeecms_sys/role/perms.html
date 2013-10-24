@@ -1,7 +1,7 @@
 <div class="perm-container">
-<#--图片处理权限-->
+
 <#assign imgPerms="/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do"/>
-<#--默认有的权限，比如后台首页-->
+
 <input type="hidden" name="perms" value="/index.do,/top.do,/main.do,/left.do,/right.do,/map.do,/content/o_generateTags.do,/message/v_countUnreadMsg.do"/>
 
 <div class="perm-layout-1">
@@ -80,6 +80,9 @@
 	</div>
 	<div class="perm-layout-2">
 	<label><input value="/jobapply/" type="checkbox" name="perms"/><@s.m "cmsJobApply.function"/></label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/booking/" type="checkbox" name="perms"/>booking</label>
 	</div>
 </div>
 </div>
