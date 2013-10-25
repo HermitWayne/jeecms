@@ -181,7 +181,7 @@ function addFloderLine() {
 <span id="channel" style="display: none;">
 <@s.m "cmsStatic.channel"/>
 <select id="attr_channel_id" name="attr_channel_id">
-	<option><@s.m "cmsStatic.allChannel"/></option>
+	<option value="0"><@s.m "cmsStatic.allChannel"/></option>
 	<#if channelList?size gt 0>
 	<#assign origDeep=channelList[0].deep+1/>
 	<#list channelList as c>

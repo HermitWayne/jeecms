@@ -20,7 +20,7 @@ public class FileRepository implements ServletContextAware {
 	public String storeByExt(String path, String ext, MultipartFile file)
 			throws IOException {
 		String filename = UploadUtils.generateFilename(path, ext);
-		File dest = new File(ctx.getRealPath(filename));
+		File dest = new File(getRealPath(filename));
 		dest = UploadUtils.getUniqueFile(dest);
 		store(file, dest);
 		return filename;
@@ -28,7 +28,7 @@ public class FileRepository implements ServletContextAware {
 
 	public String storeByFilename(String filename, MultipartFile file)
 			throws IOException {
-		File dest = new File(ctx.getRealPath(filename));
+		File dest = new File(getRealPath(filename));
 		store(file, dest);
 		return filename;
 	}
@@ -36,7 +36,7 @@ public class FileRepository implements ServletContextAware {
 	public String storeByExt(String path, String ext, File file)
 			throws IOException {
 		String filename = UploadUtils.generateFilename(path, ext);
-		File dest = new File(ctx.getRealPath(filename));
+		File dest = new File(getRealPath(filename));
 		dest = UploadUtils.getUniqueFile(dest);
 		store(file, dest);
 		return filename;
@@ -44,7 +44,7 @@ public class FileRepository implements ServletContextAware {
 
 	public String storeByFilename(String filename, File file)
 			throws IOException {
-		File dest = new File(ctx.getRealPath(filename));
+		File dest = new File(getRealPath(filename));
 		store(file, dest);
 		return filename;
 	}
@@ -71,6 +71,14 @@ public class FileRepository implements ServletContextAware {
 
 	public File retrieve(String name) {
 		return new File(ctx.getRealPath(name));
+	}
+	
+	private String getRealPath(String name){
+		String realpath=ctx.getRealPath(name);
+		if(realpath==null){
+			realpath=ctx.getRealPath("/")+name;
+		}
+		return realpath;
 	}
 
 	private ServletContext ctx;

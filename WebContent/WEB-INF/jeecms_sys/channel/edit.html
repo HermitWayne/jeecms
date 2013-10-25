@@ -104,7 +104,7 @@ function appendModelTpl(modelId,tpl){
 
 <#elseif item.field=="tplContent">
 <@p.td label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
-<@p.button id="openModelTplDialog" value="${item.label!}"  name=item.field  /><@s.m "channel.modelTpl.help"/>
+<@p.button id="openModelTplDialog" value="${item.label!}"  /><@s.m "channel.modelTpl.help"/>
 </@p.td><#if count%2==0><@p.tr/></#if>
 
 <#elseif item.field=="channelStatic">

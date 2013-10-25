@@ -37,7 +37,10 @@ public class Util {
 	 * @return 字符串形式的ip
 	 */
 	public static String getIpStringFromBytes(byte[] ip) {
-		sb.delete(0, sb.length());
+		//sb.delete(0, sb.length());
+		if(sb.length()>0){
+			sb.delete(0, sb.length()-1);
+		}
 		sb.append(ip[0] & 0xFF);
 		sb.append('.');
 		sb.append(ip[1] & 0xFF);

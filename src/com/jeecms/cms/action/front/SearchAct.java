@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,24 +24,21 @@ public class SearchAct {
 	public static final String SEARCH_RESULT = "tpl.searchResult";
 	public static final String SEARCH_ERROR = "tpl.searchError";
 	public static final String SEARCH_JOB = "tpl.searchJob";
-
+	
 	@RequestMapping(value = "/search*.jspx", method = RequestMethod.GET)
 	public String index(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		// 将request中所有参数保存至model中。
-
-		String q = RequestUtils.getQueryParam(request, "q");
 		model.putAll(RequestUtils.getQueryParams(request));
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
-		//处理lucene查询字符串中的关键字
-		q=parseKeywords(q);
-		model.addAttribute("q",q);
+		String q = RequestUtils.getQueryParam(request, "q");
+		String parseQ=parseKeywords(q);
+		model.addAttribute("input",q);
+		model.addAttribute("q",parseQ);
 		String channelId = RequestUtils.getQueryParam(request, "channelId");
 		if (StringUtils.isBlank(q) && StringUtils.isBlank(channelId)) {
-			model.remove("q");
-			model.remove("channelId");
 			return FrontUtils.getTplPath(request, site.getSolutionPath(),
 					TPLDIR_SPECIAL, SEARCH_INPUT);
 		} else {
@@ -63,8 +58,9 @@ public class SearchAct {
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		//处理lucene查询字符串中的关键字
-		q=parseKeywords(q);
-		model.addAttribute("q",q);
+		String parseQ=parseKeywords(q);
+		model.addAttribute("input",q);
+		model.addAttribute("q",parseQ);
 		model.addAttribute("queryCategory",category);
 		model.addAttribute("queryWorkplace",workplace);
 		if (StringUtils.isBlank(q)) {
@@ -75,6 +71,14 @@ public class SearchAct {
 	}
 	
 	public static String parseKeywords(String q){
+		char c='\\';
+		int cIndex=q.indexOf(c);
+		if(cIndex!=-1&&cIndex==0){
+			q=q.substring(1);
+		}
+		if(cIndex!=-1&&cIndex==q.length()-1){
+			q=q.substring(0,q.length()-1);
+		}
 		try {
 			String regular = "[\\+\\-\\&\\|\\!\\(\\)\\{\\}\\[\\]\\^\\~\\*\\?\\:\\\\]";
 			Pattern p = Pattern.compile(regular);

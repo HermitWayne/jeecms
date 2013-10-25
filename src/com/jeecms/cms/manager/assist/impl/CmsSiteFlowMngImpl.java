@@ -44,9 +44,9 @@ public class CmsSiteFlowMngImpl implements CmsSiteFlowMng {
 	@SuppressWarnings("unchecked")
 	public int freshCacheToDB(Ehcache cache) {
 		int count = 0;
-		List<FlowBean> list = cache.getKeys();
-		for (FlowBean bean : list) {
-			Element element = cache.get(bean);
+		List<String> list = cache.getKeys();
+		for (String uuid : list) {
+			Element element = cache.get(uuid);
 			if (element == null) {
 				return count;
 			}

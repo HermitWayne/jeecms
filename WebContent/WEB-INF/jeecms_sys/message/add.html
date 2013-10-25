@@ -29,7 +29,7 @@ function checkReceiverUser(){
 </div>
 <div class="body-box">
 <@p.form id="jvForm" action="v_send.do" labelWidth="10">
-<@p.td  label="cmsMessage.sendUser" colspan="2" width="50">
+<@p.td  label="cmsMessage.receiverUser" colspan="2" width="50">
 <input  name="username" id="username" maxlength="100" onchange="find_user()" <#if message??>value="${message.username!}"</#if>/>
 <@s.m "cmsMessage.groupSelect"/>
 <select name="groupId" id="groupId">

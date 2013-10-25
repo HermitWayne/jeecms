@@ -180,15 +180,19 @@ public class CmsTaskAct {
 	 * @throws ClassNotFoundException
 	 */
 	private void startTask(CmsTask task,String taskCode) throws ParseException, SchedulerException, ClassNotFoundException{
-		JobDetail jobDetail = new JobDetail();
-		jobDetail.setName(taskCode);
-		jobDetail.setGroup(Scheduler.DEFAULT_GROUP);
-		jobDetail.setJobClass(getClassByTask(task.getJobClass()));
-		//任务需要参数attr属性 
-		jobDetail.setJobDataMap(getJobDataMap(task.getAttr()));
-		CronTrigger cronTrigger = new CronTrigger("cron_" + taskCode,Scheduler.DEFAULT_GROUP, jobDetail.getName(),Scheduler.DEFAULT_GROUP);
-		cronTrigger.setCronExpression(manager.getCronExpressionFromDB(task.getId()));
-		scheduler.scheduleJob(jobDetail, cronTrigger); 
+		String cronExpress=manager.getCronExpressionFromDB(task.getId());
+		System.out.println(cronExpress);
+		if(cronExpress.indexOf("null")==-1){
+			JobDetail jobDetail = new JobDetail();
+			jobDetail.setName(taskCode);
+			jobDetail.setGroup(Scheduler.DEFAULT_GROUP);
+			jobDetail.setJobClass(getClassByTask(task.getJobClass()));
+			//任务需要参数attr属性 
+			jobDetail.setJobDataMap(getJobDataMap(task.getAttr()));
+			CronTrigger cronTrigger = new CronTrigger("cron_" + taskCode,Scheduler.DEFAULT_GROUP, jobDetail.getName(),Scheduler.DEFAULT_GROUP);
+			cronTrigger.setCronExpression(cronExpress);
+			scheduler.scheduleJob(jobDetail, cronTrigger); 
+		}
 	}
 	
 	/**

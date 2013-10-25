@@ -35,7 +35,7 @@
             </table>
             <div class="sousuoCon">
             [#if q??]
-            [@cms_lucene_page q=q category=queryCategory workplace=queryWorkplace count="10" titLen="25" descLen='50' append='...' ]
+            [@cms_lucene_page q=q category=queryCategory workplace=queryWorkplace channelId='59' count="10" titLen="25" descLen='50' append='...' ]
             <div class="search_msg">
             您搜索的<span class="red">“${q!}”</span>， 共有 <span class="red">${tag_list?size} 条</span> 查询结果，[@process_time/]
             </div>

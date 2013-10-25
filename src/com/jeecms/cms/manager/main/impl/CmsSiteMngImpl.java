@@ -60,7 +60,9 @@ public class CmsSiteMngImpl implements CmsSiteMng {
 		// 处理管理员
 		cmsUserMng.addSiteToUser(currUser, bean, bean.getFinalStep());
 		//保存站点相关公司信息
-		siteCompanyMng.save(bean,new CmsSiteCompany());
+		CmsSiteCompany company=new CmsSiteCompany();
+		company.setName(bean.getName());
+		siteCompanyMng.save(bean,company);
 		return bean;
 	}
 

@@ -17,6 +17,7 @@ import com.jeecms.cms.entity.main.ContentExt;
 import com.jeecms.cms.entity.main.ContentTxt;
 import com.jeecms.cms.manager.assist.CmsAcquisitionMng;
 import com.jeecms.cms.manager.main.ChannelMng;
+import com.jeecms.cms.manager.main.CmsModelMng;
 import com.jeecms.cms.manager.main.CmsSiteMng;
 import com.jeecms.cms.manager.main.CmsUserMng;
 import com.jeecms.cms.manager.main.ContentMng;
@@ -159,6 +160,7 @@ public class CmsAcquisitionMngImpl implements CmsAcquisitionMng,
 		CmsAcquisition acqu = findById(acquId);
 		Content c = new Content();
 		c.setSite(acqu.getSite());
+		c.setModel(modelMng.getDefModel());
 		ContentExt cext = new ContentExt();
 		ContentTxt ctxt = new ContentTxt();
 		cext.setAuthor(author);
@@ -236,6 +238,8 @@ public class CmsAcquisitionMngImpl implements CmsAcquisitionMng,
 	private CmsSiteMng cmsSiteMng;
 	private CmsUserMng cmsUserMng;
 	private CmsAcquisitionDao dao;
+	@Autowired
+	private CmsModelMng modelMng;
 
 	@Autowired
 	public void setChannelMng(ChannelMng channelMng) {

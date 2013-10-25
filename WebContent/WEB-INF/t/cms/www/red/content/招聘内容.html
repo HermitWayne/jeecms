@@ -33,7 +33,7 @@ Cms.siteFlow("${base}", location.href, document.referrer);
     
         <div class="newsTex">
           <h1><span style="color: ${content.titleColor!}">[#if content.bold]<b>${content.title}</b>[#else]${content.title}[/#if]</span></h1>
-        <div class="msgbar">发布时间：${content.releaseDate?string("yyyy-MM-dd")} &nbsp; 截止时间：${content.attr.deadline!} &nbsp; 浏览次数：<span id="views"></span> &nbsp; 
+        <div class="msgbar">发布时间 ${content.releaseDate?string("yyyy-MM-dd")}&nbsp;  截止时间 ${content.attr.deadline!}&nbsp;浏览次数：<span id="views"></span> &nbsp; 我要评论(<span id="comments"></span>)
         [#if user??]
         <span onclick="Cms.collect('${base}','${content.id}',1,'cancelSpan','comfirmSpan')" id="comfirmSpan" style="cursor: pointer;">我要收藏</span>
         <span onclick="Cms.collect('${base}','${content.id}',0,'cancelSpan','comfirmSpan')" id="cancelSpan"  style="cursor: pointer;">取消收藏</span>
@@ -44,13 +44,12 @@ Cms.siteFlow("${base}", location.href, document.referrer);
         </script>
         [/#if]
         </div>
-        <div class="clear"></div>
         <div class="newsCon">
-            <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0" class="zpbgfont" style=" border:1px solid #dadada; background:#fafafa;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="3" style=" border:1px solid #dadada; background:#fafafa;">
               <tr>
-                <td width="75" height="30" align="right">工作经验：</td>
+                <td width="15%" height="30" align="right">工作经验：</td>
                 <td>${content.attr.experience!}</td>
-                <td width="75" align="right">工作性质：</td>
+                <td width="15%" align="right">工作性质：</td>
                 <td>${content.attr.nature!}</td>
               </tr>
               <tr>
@@ -102,7 +101,7 @@ Cms.siteFlow("${base}", location.href, document.referrer);
             <li><strong>下一篇：</strong>[@cms_content id=content.id next='0' channelId=channel.id][#if tag_bean??]<a href="${tag_bean.url}">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]</li>
             </ul>
           </div>
-          <div class="clear-10"></div>
+        
         </div>
     </div>
     <div class="w300 mt10">
@@ -115,7 +114,7 @@ Cms.siteFlow("${base}", location.href, document.referrer);
             </div>
             <div class="jrhtList">
                 <ul>
-                [@cms_content_list count='20' orderBy='4' titLen='18' channelId='61'  channelOption='1']
+                [@cms_content_list count='20' orderBy='4' titLen='18' channelId='59'  channelOption='1']
                 [#list tag_list as a]
                   <li>
                 <a href="${a.url}" title="${a.title}" target="_blank">

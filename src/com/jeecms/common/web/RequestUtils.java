@@ -250,7 +250,7 @@ public class RequestUtils {
 			if (cookie != null) {
 				return cookie.getValue();
 			} else {
-				return null;
+				return request.getSession().getId();
 			}
 		}
 

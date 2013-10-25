@@ -36,6 +36,7 @@ import com.jeecms.cms.manager.assist.CmsCommentMng;
 import com.jeecms.cms.manager.assist.CmsFileMng;
 import com.jeecms.cms.manager.main.ChannelMng;
 import com.jeecms.cms.manager.main.CmsGroupMng;
+import com.jeecms.cms.manager.main.CmsModelMng;
 import com.jeecms.cms.manager.main.CmsTopicMng;
 import com.jeecms.cms.manager.main.CmsUserMng;
 import com.jeecms.cms.manager.main.ContentCheckMng;
@@ -213,14 +214,14 @@ public class ContentMngImpl implements ContentMng, ChannelDeleteChecker {
 		Content entity = dao.findById(id);
 		return entity;
 	}
-
+	
 	public Content save(Content bean, ContentExt ext, ContentTxt txt,
 			Integer[] channelIds, Integer[] topicIds, Integer[] viewGroupIds,
 			String[] tagArr, String[] attachmentPaths,
 			String[] attachmentNames, String[] attachmentFilenames,
-			String[] picPaths, String[] picDescs, Integer channelId,
+			String[] picPaths, String[] picDescs, Integer channelId, 
 			Integer typeId, Boolean draft, CmsUser user, boolean forMember) {
-		saveContent(bean, ext, txt, channelId, typeId, draft, user, forMember);
+		saveContent(bean, ext, txt, channelId,typeId, draft, user, forMember);
 		// 保存副栏目
 		if (channelIds != null && channelIds.length > 0) {
 			for (Integer cid : channelIds) {
@@ -725,6 +726,8 @@ public class ContentMngImpl implements ContentMng, ChannelDeleteChecker {
 	private ContentDao dao;
 	private StaticPageSvc staticPageSvc;
 	private CmsFileMng fileMng;
+	@Autowired
+	protected CmsModelMng cmsModelMng;
 
 	@Autowired
 	public void setChannelMng(ChannelMng channelMng) {

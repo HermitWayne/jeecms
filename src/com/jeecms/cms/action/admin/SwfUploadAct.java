@@ -100,10 +100,13 @@ public class SwfUploadAct extends AbstractUpload {
 			@RequestParam(value = "Filedata", required = false) MultipartFile file,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws Exception {
+		System.out.println("111111111111111111111");
 		WebErrors errors = validate(file.getOriginalFilename(), file, request);
 		if (errors.hasErrors()) {
+			System.out.println("22222222222222222");
 			model.addAttribute(ERROR, errors.getErrors().get(0));
 		}
+		System.out.println("333333333333333333333333");
 		CmsSite site = CmsUtils.getSite(request);
 		String ctx = request.getContextPath();
 		String origName = file.getOriginalFilename();
@@ -129,14 +132,17 @@ public class SwfUploadAct extends AbstractUpload {
 				fileUrl = fileRepository.storeByExt(site.getUploadPath(), ext,
 						file);
 				// 加上部署路径
+				System.out.println("fileUrl="+fileUrl);
 				fileUrl = ctx + fileUrl;
 			}
 			fileMng.saveFileByPath(fileUrl, origName, false);
 			model.addAttribute("attachmentPath", fileUrl);
 		} catch (IllegalStateException e) {
 			model.addAttribute("error", e.getMessage());
+			e.printStackTrace();
 			log.error("upload file error!", e);
 		} catch (IOException e) {
+			e.printStackTrace();
 			model.addAttribute("error", e.getMessage());
 			log.error("upload file error!", e);
 		}

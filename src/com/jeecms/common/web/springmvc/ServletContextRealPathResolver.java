@@ -9,7 +9,12 @@ import org.springframework.web.context.ServletContextAware;
 public class ServletContextRealPathResolver implements RealPathResolver,
 		ServletContextAware {
 	public String get(String path) {
-		return context.getRealPath(path);
+		String realpath=context.getRealPath(path);
+		//tomcat8.0获取不到真实路径，通过/获取路径
+		if(realpath==null){
+			realpath=context.getRealPath("/")+path;
+		}
+		return realpath;
 	}
 
 	public void setServletContext(ServletContext servletContext) {

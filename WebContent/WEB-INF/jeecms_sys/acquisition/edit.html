@@ -67,7 +67,7 @@ $(function() {
 </@p.td><@p.tr/>
 <@p.textarea colspan="2" label="cmsAcquisition.planList" name="planList" value=cmsAcquisition.planList rows="5" cols="70" help="cmsAcquisition.planList.help" helpPosition="3"/><@p.tr/>
 <@p.td colspan="2" label="cmsAcquisition.dynamicAddr">
-<div><input type="text" name="dynamicAddr" value="${cmsAcquisition.dynamicAddr}" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "cmsAcquisition.dynamicAddr.help"/></span></div>
+<div><input type="text" name="dynamicAddr" value="${cmsAcquisition.dynamicAddr!}" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "cmsAcquisition.dynamicAddr.help"/></span></div>
 <div><@s.m "cmsAcquisition.dynamicPage"/> <@s.m "cmsAcquisition.from"/> <input type="text" name="dynamicStart" value="${cmsAcquisition.dynamicStart!}" size="7"/> &nbsp; <@s.m "cmsAcquisition.to"/>: <input type="text" name="dynamicEnd" value="${cmsAcquisition.dynamicEnd!}" size="7"/></div> 
 </@p.td><@p.tr/>
 

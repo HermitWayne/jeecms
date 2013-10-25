@@ -106,7 +106,7 @@ public interface ContentMng {
 			Integer[] channelIds, Integer[] topicIds, Integer[] viewGroupIds,
 			String[] tagArr, String[] attachmentPaths,
 			String[] attachmentNames, String[] attachmentFilenames,
-			String[] picPaths, String[] picDescs, Integer channelId,
+			String[] picPaths, String[] picDescs, Integer channelId, 
 			Integer typeId, Boolean draft, CmsUser user, boolean forMember);
 	
 

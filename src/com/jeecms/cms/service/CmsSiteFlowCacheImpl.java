@@ -2,6 +2,7 @@ package com.jeecms.cms.service;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.UUID;
 
 import static com.jeecms.common.util.ParseURLKeyword.getKeyword;
 import net.sf.ehcache.Ehcache;
@@ -29,21 +30,9 @@ public class CmsSiteFlowCacheImpl implements CmsSiteFlowCache, DisposableBean {
 
 	public void flow(CmsSite site, String ip, String sessionId, String page, String referer) {
 		CmsSiteFlow cmsSiteFlow = create(site, ip, sessionId, page, referer);
-		FlowBean flowBean = new FlowBean(cmsSiteFlow.getAccessDate(), sessionId, page);
-		if(cache.get(flowBean) == null){
-			CmsSiteFlow bean = null;
-			try {
-				bean = manager.findUniqueByProperties(site.getId(), cmsSiteFlow.getAccessDate(),
-						sessionId, page);
-			} catch (HibernateException e) {
-				cache.remove(flowBean);
-			}
-			if(bean!=null){
-				cache.put(new Element(flowBean,bean));
-			}else{
-				cache.put(new Element(flowBean, cmsSiteFlow));
-			}
-		}
+		//每次访问都算一次pv访问
+		String uuid=UUID.randomUUID().toString();
+		cache.put(new Element(uuid, cmsSiteFlow));
 		refreshToDB();
 	}
 

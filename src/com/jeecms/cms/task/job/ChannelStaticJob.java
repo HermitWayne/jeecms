@@ -35,6 +35,9 @@ public class ChannelStaticJob extends QuartzJobBean{
 	        String channelIdStr=(String) jdm.get(CmsTask.TASK_PARAM_CHANNEL_ID);
 	        if(!StringUtils.isBlank(channelIdStr)){
 	        	this.channelId=Integer.parseInt(channelIdStr);
+	        	if(channelId.equals(0)){
+	        		channelId=null;
+	        	}
 	        }
 			//获取站点
 	        String siteIdStr=(String) jdm.get(CmsTask.TASK_PARAM_SITE_ID);

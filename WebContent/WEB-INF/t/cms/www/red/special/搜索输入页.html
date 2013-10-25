@@ -32,7 +32,7 @@
             [#if q??]
             [@cms_lucene_page q=q channelId=channelId descLen='100' append='...' count='10']
             <div class="search_msg">
-            您搜索的<span class="red">"${oldq!}"</span>， 共有 <span class="red">${tag_list?size} 条</span> 查询结果，[@process_time/]
+            您搜索的<span class="red">"${input!}"</span>， 共有 <span class="red">${tag_list?size} 条</span> 查询结果，[@process_time/]
             </div>
             [#list tag_list as s]
             <dl class="sslist">
