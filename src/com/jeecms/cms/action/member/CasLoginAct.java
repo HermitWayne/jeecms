@@ -206,7 +206,7 @@ public class CasLoginAct {
 			return sb.toString();
 		} else if (!StringUtils.isBlank(returnUrl)) {
 			StringBuilder sb = new StringBuilder("redirect:");
-			sb.append(returnUrl.replace("\\", ""));
+			sb.append(returnUrl.replace("：", ":"));
 			return sb.toString();
 		} else {
 			return null;
