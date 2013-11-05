@@ -35,11 +35,12 @@ function optDelete() {
 		<input type='checkbox' name='ids' value='${booking.id}'/><#t/>
 	</@p.column><#t/>
 	<@p.column title="ID">${booking.id}</@p.column><#t/>
-	<@p.column code="预约领导">[${booking.content.attr.position!}]${booking.content.attr.target!}</@p.column><#t/>
+	<@p.column code="预约领导">${booking.content.attr.target!}</@p.column><#t/>
+	<@p.column code="预约地点">${booking.content.attr.position!}</@p.column><#t/>
 	<@p.column code="预约时间">${booking.content.attr.bookingdate!}</@p.column><#t/>
 	<@p.column code="主题">${booking.title!}</@p.column><#t/>
 	<@p.column code="人员">${booking.realname!}</@p.column><#t/>
-	<@p.column code="状态"><#if booking.status = 0><span>未读</span><#else><span>已读</span></#if></@p.column><#t/>
+	<@p.column code="状态"><#if booking.status = 0><span style="color:red;">未读</span><#else><span style="color:green;">已读</span></#if></@p.column><#t/>
 	<@p.column code="创建时间">${booking.createtime?string("yyyy-MM-dd")}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
 		<a href="v_view.do?id=${booking.id}&pageNo=${pageNo!}" class="pn-opt">查看</a>| <#rt/>

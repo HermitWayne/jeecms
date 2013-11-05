@@ -15,7 +15,8 @@
 </div>
 <div class="body-box">
 <@p.form id="jvForm" action="v_list.do" labelWidth="12">
-<@p.td colspan="1" label="预约领导">[${booking.content.attr.position!}]${booking.content.attr.target!}</@p.td><@p.tr/>
+<@p.td colspan="1" label="预约领导">${booking.content.attr.target!}</@p.td><@p.tr/>
+<@p.td colspan="1" label="预约地点">${booking.content.attr.position!}</@p.td><@p.tr/>
 <@p.td colspan="1" label="预约日期">${booking.content.attr.bookingdate!}</@p.td><@p.tr/>
 <@p.td colspan="1" label="主题">${booking.title!}</@p.td><@p.tr/>
 <@p.td colspan="1" label="内容">${booking.remark!}</@p.td><@p.tr/>

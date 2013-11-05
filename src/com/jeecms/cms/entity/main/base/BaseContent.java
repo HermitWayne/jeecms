@@ -277,8 +277,25 @@ public abstract class BaseContent  implements Serializable {
 		this.jobApplys = jobApplys;
 	}
 	
-	public Integer getEnabledSlmBookingCount() {
-		return org.github.jeecms.model.SlmBookings.isEnabledBooking(this.id);
+	public boolean getEnabledSlmBooking() {
+		String bookingdate = attr.get("bookingdate");
+		int bookingday = 30;
+		try {
+			bookingday = Integer.valueOf(attr.get("bookingday"));
+		} catch (Exception e) {}
+		String slmMagic = attr.get("_slm_magic");
+		if (slmMagic == null || !slmMagic.equals("booking") || bookingdate == null) {
+			return false;
+		}
+		boolean ret = false;
+		try {
+			java.util.Date bookdate = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(bookingdate);
+			java.util.Date now = new java.util.Date();
+			if (now.getTime() > bookdate.getTime()) ret = false;
+			else if (bookdate.getTime() - now.getTime() > (1L * bookingday * 24 * 60 * 60 * 1000)) ret = false;
+			else ret = true;
+		} catch (Exception e){}
+		return ret;
 	}
 
 	/**

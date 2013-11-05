@@ -49,13 +49,16 @@ object SlmBookings extends Table[SlmBooking]("ut_booking") {
   	 	    title, realname, company, email, telphone, remark,
   	 	    dict.CommonStatus.Deleted, now, now))
   }
-  def booking(contentid: Int, id: Int) = database withSession {
+  def bookingOnce(contentid: Int, id: Int) = database withSession {
     val q = Query(this).filter(b => b.contentid === contentid && 
         b.status =!= dict.CommonStatus.Deleted)
     val c = Query(q.map(_ => 1).length).first
     if (c == 0) {
       Query(this).filter(b => b.id === id && b.status === dict.CommonStatus.Deleted).map(_.status).update(dict.CommonStatus.Enabled)
     } else 0
+  }
+  def booking(contentid: Int, id: Int) = database withSession {
+    Query(this).filter(b => b.id === id && b.status === dict.CommonStatus.Deleted).map(_.status).update(dict.CommonStatus.Enabled)
   }
   def delete(id: Int) = database withSession {
     Query(this).filter(_.id === id).map(_.status).update(dict.CommonStatus.Deleted)

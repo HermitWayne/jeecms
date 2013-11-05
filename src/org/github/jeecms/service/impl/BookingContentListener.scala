@@ -16,7 +16,7 @@ class BookingContentListener extends ContentListenerAbstract {
     try {
     if (content.getAttr().get("_slm_magic") == "booking") {
       val data = content.getAttr()
-      content.getContentExt().setTitle("[%s] %s %s ".format(data.get("bookingdate"), data.get("position"), data.get("target")))
+      content.getContentExt().setTitle("[%s] %s %s ".format(data.get("bookingdate"), data.get("target"), data.get("position")))
     }
     } catch {
       case _: Exception =>
