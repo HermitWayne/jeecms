@@ -52,7 +52,6 @@ class BookingAct {
   private def checkBooking(cid: Integer, b: org.github.jeecms.entity.SlmBooking) = {
     if (cid == null || b.getTitle == null || b.getTitle.isEmpty() || 
         b.getRealname == null || b.getRealname.isEmpty() || 
-        b.getEmail == null || b.getEmail.isEmpty() || 
         b.getTelphone == null || b.getTelphone.isEmpty()) false
     else true
   }
